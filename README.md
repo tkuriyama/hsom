@@ -4,10 +4,8 @@ Collection of exercises from reading [The Haskelll School of Music](https://www.
 
 <hr>
 
-<ul>
-<li>[Exercises](https://github.com/tkuriyama/hsom/tree/master/exercises)</li>
-<li>Music</li>
-<li>Notes</li>
-</ul>
+- [Exercises](https://github.com/tkuriyama/hsom/tree/master/exercises)
+Music
+- Notes
 
 <br>
