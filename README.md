@@ -5,7 +5,7 @@ Collection of exercises from reading [The Haskelll School of Music](https://www.
 <hr>
 
 - [Exercises](https://github.com/tkuriyama/hsom/tree/master/exercises)
-Music
+- Music
 - Notes
 
 <br>
