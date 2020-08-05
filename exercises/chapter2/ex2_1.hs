@@ -21,9 +21,3 @@ twoFiveOne p d = let n = note d p
                      two = triad (transpose 2 n) False
                      one = triad (note (d*2) p) True
                  in two :+: five :+: one
-
--- 2.2
-
-data BluesPitchClass = Ro MT Fo Fi MS
-
-type BluesPitch = (BluesPitchClass, Octave)
