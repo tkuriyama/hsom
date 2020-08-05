@@ -21,8 +21,7 @@ fromBlues (Prim (Note d p)) = Prim (Note d (fromBluesPitch p))
 fromBlues (Prim (Rest d)) = Prim (Rest d)
 fromBlues (m1 :+: m2) = (fromBlues m1) :+: (fromBlues m2)
 fromBlues (m1 :=: m2) = (fromBlues m1) :=: (fromBlues m2)
-fromBlues (Modify c m) = Modify c (fromBlue
-                                   s m)
+fromBlues (Modify c m) = Modify c (fromBlues m)
 
 m1 :: Music BluesPitch
 m1 = ro 4 qn :+: fi 4 qn :+: ms 4 qn :+: fo 4 qn :+: fo 4 wn
