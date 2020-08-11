@@ -3,6 +3,14 @@ import Euterpea
 
 type Triple = (AbsPitch, AbsPitch, AbsPitch)
 
+-- A melody phrase (one rest and a triple) in first half of the piece
+tPhrase :: Pitch -> Triple -> Music Pitch
+tPhrase p (t1, t2, t3) = rest sn :+: triple
+  where triple = line $ map (note sn) [trans t1 p, trans t2 p, trans t3 p]
+
+-- melody bars
+genMLine = line . map (uncurry tPhrase)
+
 t35  = (0, 3, 5)
 t38  = (0, 3, 8)
 t39  = (0, 3, 9)
@@ -20,22 +28,13 @@ t79  = (0, 7, 9)
 t710 = (0, 7, 10)
 t711 = (0, 7, 11)
 
--- A melody phrase (one rest and a triple) in first half of the piece
-tPhrase :: Pitch -> Triple -> Music Pitch
-tPhrase p (t1, t2, t3) = rest sn :+: triple
-  where triple = line $ map (note sn) [trans t1 p, trans t2 p, trans t3 p]
-
--- melody bars
-genMLine = line . map (uncurry tPhrase)
-
 c4 = (C,4)
 g4 = (G,4)
-a4 = (A,4)
 
 m1 = genMLine [(g4, t59), (g4, t59), (g4, t57), ((B,4), t38)]
-m2 = genMLine [(a4, t510), (a4, t58), (a4, t57), ((C,5), t49)]
+m2 = genMLine [((A,4), t510), ((A,4), t58), ((A,4), t57), ((C,5), t49)]
 m3 = genMLine [((B,4), t510), ((B,4), t58), ((C,5), t45), (g4, t710)]
-m4 = genMLine [(g4, t79), (g4, t59), (a4, t35), ((E,4), t710)]
+m4 = genMLine [(g4, t79), (g4, t59), ((A,4), t35), ((E,4), t710)]
 m5 = genMLine [((E,4), t78), ((E,4), t58), ((F,4), t45), (c4, t710)]
 m6 = genMLine [(c4, t79), (c4, t59), ((D,4), t39), ((E,4), t38)]
 m7 = genMLine [((D,4), t510), ((D,4), t59), (c4, t711), (c4, t69)]
