@@ -25,7 +25,6 @@ t79  = (0, 7, 9)
 t710 = (0, 7, 10)
 t711 = (0, 7, 11)
 
-
 m1 = genMLine [((G,4), t59), ((G,4), t59), ((G,4), t57), ((B,4), t38)]
 m2 = genMLine [((A,4), t510), ((A,4), t58), ((A,4), t57), ((C,5), t49)]
 
@@ -36,7 +35,7 @@ prefixes (x:xs) = let f pf = x:pf
 
 prefix :: [Music a] -> Music a
 prefix mel = let m1 = line $ concat (prefixes mel)
-                 m2 = transpose 12 . line $ concat (prefixes mel)
+                 m2 = transpose 12 . line $ concat (prefixes $ reverse mel)
                  m = instrument Flute m1 :=: instrument VoiceOohs m2
              in m :=: transpose 5 m :+: m
 
