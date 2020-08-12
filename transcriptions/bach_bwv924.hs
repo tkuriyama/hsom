@@ -1,5 +1,6 @@
 -- JS Bach, Twelve Preludes, C Major, BWV 924
 import Euterpea
+import Utils
 
 type Triple = (AbsPitch, AbsPitch, AbsPitch)
 
@@ -45,18 +46,21 @@ melody :: Music Pitch
 melody = line [m1, m2, m3, m4, m5, m6, m7, m8, m9]
 
 -- a bass phrase in the first half of the piece
-bPhrase :: [Pitch] -> Music Pitch
-bPhrase = line . map (note qn)
+bPhrase :: [(Pitch, Utils.Ornament)] -> Music Pitch
+bPhrase = line . map f
+  where f (p, MordentD) = mordentD qn p
+        f (p, MordentU) = mordentU qn p
+        f (p, _) = note qn p
 
-b1 = bPhrase [(C,3), (E,3), (G,3), (G,2)]
-b2 = bPhrase [(D,3), (F,3), (A,3), (A,2)]
-b3 = bPhrase [(E,3), (E,4), (A,3), (B,3)]
-b4 = bPhrase [(C,4), (E,3), (Fs,3), (Gs, 3)]
-b5 = bPhrase [(A,3), (C,3), (D,3), (E,3)]
-b6 = bPhrase [(F,3), (E,3), (D,3), (C,3)]
-b7 = bPhrase [(G,3), (G,2), (G,3), (G,2)]
+b1 = bPhrase [((C,3), NO), ((E,3), NO), ((G,3), MordentD), ((G,2), NO)]
+b2 = bPhrase [((D,3), MordentD), ((F,3), NO), ((A,3), MordentD), ((A,2), NO)]
+b3 = bPhrase [((E,3), NO), ((E,4), MordentD), ((A,3), NO), ((B,3), NO)]
+b4 = bPhrase [((C,4), NO), ((E,3), NO), ((Fs,3), NO), ((Gs, 3), NO)]
+b5 = bPhrase [((A,3), NO), ((C,3), NO), ((D,3), NO), ((E,3), NO)]
+b6 = bPhrase [((F,3), NO), ((E,3), MordentU), ((D,3), NO), ((C,3), NO)]
+b7 = bPhrase [((G,3), MordentD), ((G,2), NO), ((G,3), MordentD), ((G,2), NO)]
 b8 = b7
-b9 = bPhrase [(G,3)]
+b9 = bPhrase [((G,3), NO)]
 
 -- bass bars
 
@@ -65,6 +69,6 @@ bass = line [b1, b2, b3, b4, b5, b6, b7, b8, b9]
 -- putting it together...
 
 piece :: Music Pitch
-piece = let t = 50 / 120
+piece = let t = 14 / 32
         in tempo t (melody :=: bass)
 
