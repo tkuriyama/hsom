@@ -2,8 +2,11 @@ module Utils where
 import Euterpea
 import Data.Ratio
 
-data Ornament = MordentU | MordentD | Turn | NO |
-                Trill
+data Ornament = NO           -- no ornament
+              | MordentU      -- upper mordent
+              | MordentL      -- lower mordent
+              | Turn
+              | TrillR         -- regular trill              
 
 accent :: Dur -> [Int] -> Dur -> Pitch -> Music Pitch
 accent s xs d p = (line $ accents) :+: (note d' p)
@@ -22,3 +25,9 @@ mordentD d p = accent (1%16) [0, -1] d p
 
 turn :: Dur -> Pitch -> Music Pitch
 turn d p = accent (1%16) [1, 0, -1] d p
+
+-- Trills
+
+trillR :: Dur -> Pitch -> Music Pitch
+trillR d p = accent (1%16) ts d p
+  where ts = take 16 $ cycle [1, 0]
