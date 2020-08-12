@@ -8,7 +8,7 @@ A collection of exercises from reading [The Haskell School of Music](https://www
 
 The two required components are the Euterpea library and a MIDI synthesizer. The HSoM library is optional. Below are my setup notes for macOS Catalina as of May 2020, following the [official instructions for Euterpea and HSoM](http://euterpea.com/download-and-installation/).
 
-For reasons unclear, Euterpea didn't work with Haskell Platform 8.6.5 installed using ghcup. Reverting to 8.6.3 and following the official instructions worked well.
+For reasons unclear, Euterpea didn't work with Haskell Platform 8.6.5 (installed using ghcup). Reverting to 8.6.3 and following the official instructions worked well.
 
 - Cabal 2.4.1.0
 - GHCI 8.6.3
@@ -18,6 +18,9 @@ For reasons unclear, Euterpea didn't work with Haskell Platform 8.6.5 installed 
 For the MIDI synthesizer, I chose [FluidSynth](http://www.fluidsynth.org/).
 
 - FluidSynth 2.1.3
+
+`brew install fluidsynth` 
+
 
 The synthesizer requires a "sound font". I used [this link for FluidR3 GM](https://packages.debian.org/sid/sound/fluid-soundfont-gm) and put it in `/Library/Audio/Sounds/Banks/`.
 
