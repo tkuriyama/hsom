@@ -26,4 +26,10 @@ The sound font needs to be loaded each time FluidSynth is started (or specified 
 `alias fsynth='fluidsynth /Library/Audio/Sounds/Banks/FluidR3_GM.sf2'`
 
 
+<hr>
+
+### References
+
+[Euterpea Quick Reference, 2016](http://euterpea.com/wp-content/uploads/2016/12/Euterpea_Quick_Reference.pdf)
+
 <br>
