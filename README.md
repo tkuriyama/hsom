@@ -2,7 +2,13 @@
 
 A collection of exercises from reading [The Haskell School of Music](https://www.amazon.com/Haskell-School-Music-Signals-Symphonies/dp/1108416756/).
 
+* [Setup](#setup)
+* [Outputting to File](#output)
+* [References](#ref)
+
 <hr>
+
+<a name="setup"/>
 
 ### Setup
 
@@ -28,8 +34,26 @@ The sound font needs to be loaded each time FluidSynth is started (or specified 
 
 `alias fsynth='fluidsynth /Library/Audio/Sounds/Banks/FluidR3_GM.sf2'`
 
+<hr>
+
+<a name="output"/>
+
+### Outputting to File
+
+**Midi**
+
+Using Euterpea, instead of `play` and its variants, `writeMidi` can be used to output a MIDI file instead.
+
+**MP3**
+
+FluidSynth can convert MIDI files to MP3 (via an intermediate encoding of WAV).
+
+See [this gist](https://gist.github.com/tkuriyama/ac11ceeb409ed228256a7a8f193ac0ad) for a sample bash script, to be run like `midi2mp3 filename.midi`.
+
 
 <hr>
+
+<a name="ref"/>
 
 ### References
 
