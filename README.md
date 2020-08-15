@@ -40,15 +40,13 @@ The sound font needs to be loaded each time FluidSynth is started (or specified 
 
 ### Outputting to File
 
-**Midi**
+**MIDI**
 
-Using Euterpea, instead of `play` and its variants, `writeMidi` can be used to output a MIDI file instead.
+* Using Euterpea, instead of `play` and its variants, `writeMidi` can be used to output a MIDI file instead.
 
 **MP3**
 
-FluidSynth can convert MIDI files to MP3 (via an intermediate encoding of WAV).
-
-See [this gist](https://gist.github.com/tkuriyama/ac11ceeb409ed228256a7a8f193ac0ad) for a sample bash script, to be run like `midi2mp3 filename.midi`.
+* FluidSynth can convert MIDI files to MP3 (via an intermediate encoding of WAV). See [this gist](https://gist.github.com/tkuriyama/ac11ceeb409ed228256a7a8f193ac0ad) for a sample bash script, to be run like `midi2mp3 filename.midi`.
 
 
 <hr>
