@@ -21,16 +21,16 @@ For reasons unclear, Euterpea didn't work with Haskell Platform 8.6.5 (installed
 - Euterpea 2.0.7
 - HSoM 1.0.0
 
-For the MIDI synthesizer, I chose [FluidSynth](http://www.fluidsynth.org/).
+[FluidSynth](http://www.fluidsynth.org/) is a synthesizer that works well with Euterpea.
 
 - FluidSynth 2.1.3
 
 `brew install fluidsynth` 
 
 
-The synthesizer requires a "sound font". I used [this link for FluidR3 GM](https://packages.debian.org/sid/sound/fluid-soundfont-gm) and put it in `/Library/Audio/Sounds/Banks/`.
+The synthesizer requires a "sound font", such as [FluidR3 GM](https://packages.debian.org/sid/sound/fluid-soundfont-gm). On macOS, a logical location for the sound font is `/Library/Audio/Sounds/Banks/`.
 
-The sound font needs to be loaded each time FluidSynth is started (or specified as a command-line argument). I setup a shell alias for convenience:
+The sound font needs to be loaded each time FluidSynth is started (or specified as a command-line argument). An alias can be setup for convenience:
 
 `alias fsynth='fluidsynth /Library/Audio/Sounds/Banks/FluidR3_GM.sf2'`
 
@@ -46,7 +46,7 @@ The sound font needs to be loaded each time FluidSynth is started (or specified 
 
 **MP3**
 
-* FluidSynth can convert MIDI files to MP3 (via an intermediate encoding of WAV). See [this gist](https://gist.github.com/tkuriyama/ac11ceeb409ed228256a7a8f193ac0ad) for a sample bash script, to be run like `midi2mp3 filename.midi`.
+* FluidSynth can convert MIDI files to MP3 (via an intermediate encoding of WAV). See [this gist](https://gist.github.com/tkuriyama/ac11ceeb409ed228256a7a8f193ac0ad) for a sample shell script, to be run like `midi2mp3 filename.midi`.
 
 
 <hr>
