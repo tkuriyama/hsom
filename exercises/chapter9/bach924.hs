@@ -13,7 +13,8 @@ tPhrase p (t1, t2, t3) = rest sn :+: triple
   where triple = line $ map (note sn) [trans t1 p, trans t2 p, trans t3 p]
 
 -- melody bars
-genMLine = line . map (uncurry tPhrase)
+genMLine :: [(Pitch, Triple)] -> Music (Pitch, Volume)
+genMLine = addVolume 80 . line . map (uncurry tPhrase)
 
 t35  = (0, 3, 5)
 t38  = (0, 3, 8)
@@ -43,14 +44,14 @@ m5 = genMLine [((E,4), t78), ((E,4), t58), ((F,4), t45), (c4, t710)]
 m6 = genMLine [(c4, t79), (c4, t59), ((D,4), t39), ((E,4), t38)]
 m7 = genMLine [((D,4), t510), ((D,4), t59), (c4, t711), (c4, t69)]
 m8 = genMLine [((B,3), t310), ((B,3), t38), ((A,3), t310), ((A,3), t38)]
-m9 = b 3 qn :=: d 4 qn :=: f 4 qn
+m9 = addVolume 80 $ b 3 qn :=: d 4 qn :=: f 4 qn
 
-melody :: Music Pitch
+melody :: Music (Pitch, Volume)
 melody = line [m1, m2, m3, m4, m5, m6, m7, m8, m9]
 
 -- a bass phrase in the first half of the piece
-bPhrase :: [(Pitch, Utils.Ornament)] -> Music Pitch
-bPhrase = line . map f
+bPhrase :: [(Pitch, Utils.Ornament)] -> Music (Pitch, Volume)
+bPhrase = addVolume 80 . line . map f
   where f (p, MordentL) = mordentD qn p
         f (p, MordentU) = mordentU qn p
         f (p, TrillR) = trillR qn p
@@ -68,11 +69,12 @@ b9 = bPhrase [((G,3), NO)]
 
 -- bass bars
 
+bass :: Music (Pitch, Volume)
 bass = line [b1, b2, b3, b4, b5, b6, b7, b8, b9]
 
 -- putting it together...
 
-piece :: Music Pitch
+piece :: Music (Pitch, Volume)
 piece = let t = 14 / 32
         in tempo t (melody :=: bass)
 
