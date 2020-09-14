@@ -7,6 +7,8 @@ import Utils
 
 type Triple = (AbsPitch, AbsPitch, AbsPitch)
 
+regVol = 60
+
 -- A melody phrase (one rest and a triple) in first half of the piece
 tPhrase :: Pitch -> Triple -> Music Pitch
 tPhrase p (t1, t2, t3) = rest sn :+: triple
@@ -14,7 +16,7 @@ tPhrase p (t1, t2, t3) = rest sn :+: triple
 
 -- melody bars
 genMLine :: [(Pitch, Triple)] -> Music (Pitch, Volume)
-genMLine = addVolume 80 . line . map (uncurry tPhrase)
+genMLine = addVolume regVol . line . map (uncurry tPhrase)
 
 t35  = (0, 3, 5)
 t38  = (0, 3, 8)
@@ -47,11 +49,12 @@ m8 = genMLine [((B,3), t310), ((B,3), t38), ((A,3), t310), ((A,3), t38)]
 m9 = addVolume 80 $ b 3 qn :=: d 4 qn :=: f 4 qn
 
 melody :: Music (Pitch, Volume)
-melody = line [m1, m2, m3, m4, m5, m6, m7, m8, m9]
+melody = line [phrase [Dyn $ Crescendo 1.5] m1,
+               m2, m3, m4, m5, m6, m7, m8, m9]
 
 -- a bass phrase in the first half of the piece
 bPhrase :: [(Pitch, Utils.Ornament)] -> Music (Pitch, Volume)
-bPhrase = addVolume 80 . line . map f
+bPhrase = addVolume regVol . line . map f
   where f (p, MordentL) = mordentD qn p
         f (p, MordentU) = mordentU qn p
         f (p, TrillR) = trillR qn p
